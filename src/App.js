@@ -244,7 +244,7 @@ export default function App() {
 
                     <CardContent>
                       <RcIf if={itemm.wpp !== 'Fundador e Professor'} >
-                        <RcIf if={itemm.wpp.substring(0, 1) === '('} >,
+                        <RcIf if={itemm.wpp.substring(0, 1) === '('} >
                           <Button onClick={() => { OpenWpp(itemm.wpp, itemm.estrangeira) }}
                             variant="outlined"
                             startIcon={<WhatsAppIcon style={{ color: green[500] }} />}
