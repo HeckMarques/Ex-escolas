@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Fragment } from "react";
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
@@ -17,7 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import { green } from '@material-ui/core/colors';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import InstagramIcon from '@material-ui/icons/Instagram';
-
+import ListAltIcon from '@material-ui/icons/ListAlt';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -42,7 +43,16 @@ const useStyles = makeStyles((theme) => ({
 
   text: {
     margin: theme.spacing(1),
-    textAlign: 'left'
+    textAlign: 'left',
+  },
+  total: {
+    margin: theme.spacing(1),
+    textAlign: 'center',
+  },
+
+  botao: {
+    marginLeft: theme.spacing(5),
+    color: 'white',
   },
 
   paper: {
@@ -97,8 +107,9 @@ export default function App() {
     window.open(url);
   };
 
-  const OpenInsta = () => {
-    window.open("https://www.instagram.com/filosofiaex/");
+  const OpenLink = (link) => {
+    window.open(link);
+    //window.open("https://www.instagram.com/filosofiaex/");
   };
 
   const [estados, setEstados] = React.useState([{ "label": "Acre", "value": "AC" }, { "label": "Alagoas", "value": "AL" }, { "label": "Amap\u00e1", "value": "AP" }, { "label": "Amazonas", "value": "AM" }, { "label": "Bahia", "value": "BA" }, { "label": "Cear\u00e1", "value": "CE" }, { "label": "Distrito Federal", "value": "DF" }, { "label": "Esp\u00edrito Santo", "value": "ES" }, { "label": "Goi\u00e1s", "value": "GO" }, { "label": "Maranh\u00e3o", "value": "MA" }, { "label": "Mato Grosso", "value": "MT" }, { "label": "Mato Grosso do Sul", "value": "MS" }, { "label": "Minas Gerais", "value": "MG" }, { "label": "Paran\u00e1", "value": "PR" }, { "label": "Para\u00edba", "value": "PB" }, { "label": "Par\u00e1", "value": "PA" }, { "label": "Pernambuco", "value": "PE" }, { "label": "Piau\u00ed", "value": "PI" }, { "label": "Rio Grande do Norte", "value": "RN" }, { "label": "Rio Grande do Sul", "value": "RS" }, { "label": "Rio de Janeiro", "value": "RJ" }, { "label": "Rond\u00f4nia", "value": "RO" }, { "label": "Roraima", "value": "RR" }, { "label": "Santa Catarina", "value": "SC" }, { "label": "Sergipe", "value": "SE" }, { "label": "S\u00e3o Paulo", "value": "SP" }, { "label": "Tocantins", "value": "TO" }]);
@@ -148,7 +159,7 @@ export default function App() {
 
   useEffect(() => {
     Tabletop.init({
-      key: "1N7on1L12MNn-KF66zAvRUl2mcc9Ic7hfFJ2YNX_6jTE",
+      key: "1ojdM2qT1OaeHkuhfqBlHrSOLUPiyscwn2wAOhY0j7RM",
       simpleSheet: true
     })
       .then((data) => {
@@ -215,18 +226,26 @@ export default function App() {
           <Button variant="contained" className={classes.formControl}
             onClick={() => { VerEstrangeiras() }}>Escolas estrangeiras
                 </Button>
-
-
           < br />
-          < br />
+
           <Typography variant="body2" className={classes.text}>
             * Se você perceber que algum professor (a) ou Escola, está falando contra o ideal EX, DENUNCIE para advogadoaovivo@gmail.com
             </Typography>
           <Typography variant="body2" className={classes.text}>
             * Se sua Escola não consta aqui, nos envie seu nome, região e Whatsapp
+             <Button className={classes.botao} onClick={() => { OpenLink('https://docs.google.com/spreadsheets/d/1ojdM2qT1OaeHkuhfqBlHrSOLUPiyscwn2wAOhY0j7RM') }}
+              variant="outlined"
+              startIcon={<ListAltIcon />}
+            > Acessar planilha original</Button>
             </Typography>
+          < br />
         </div>
       </div>
+
+      <div className={classes.total}>
+        <p> Mostrando {data.length} contatos</p>
+      </div>
+
       <CssBaseline />
       <Container fixed>
 
@@ -253,7 +272,7 @@ export default function App() {
 
 
                         <RcElse>
-                          <Button onClick={OpenInsta}
+                          <Button onClick={() => { OpenLink('https://www.instagram.com/filosofiaex/') }}
                             variant="outlined"
                             startIcon={<InstagramIcon />}
                           > Instagram</Button>
